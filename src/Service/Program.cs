@@ -4,20 +4,19 @@ using System.Linq;
 using System.Text;
 using MassTransit;
 using Topshelf;
-using Topshelf.Configuration.Dsl;
 
 namespace Service
 {
     public class Program
     {
 
-        public static void Main(string[] args)
+        public static void Main(string[] args)// The endpoint's must be different
         {
             Bus.Initialize(sbc =>
             {
                 sbc.UseRabbitMq();
                 sbc.UseRabbitMqRouting();
-                sbc.ReceiveFrom("rabbitmq://localhost/elevate");
+                sbc.ReceiveFrom("rabbitmq://localhost/sample.service");// The endpoint's must be different
             });
 
             var cfg = HostFactory.New(c => {
