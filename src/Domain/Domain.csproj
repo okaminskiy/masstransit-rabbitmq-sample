@@ -47,9 +47,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\MassTransit.2.7.0\lib\net40\MassTransit.dll</HintPath>
     </Reference>
-    <Reference Include="MassTransit.Transports.MSMQ">
-      <HintPath>..\..\packages\MassTransit.2.7.0\lib\net40\MassTransit.Transports.MSMQ.dll</HintPath>
-    </Reference>
     <Reference Include="MassTransit.Transports.RabbitMq, Version=2.7.2.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\MassTransit.RabbitMQ.2.7.0\lib\net40\MassTransit.Transports.RabbitMq.dll</HintPath>
@@ -64,16 +61,16 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Topshelf">
-      <HintPath>..\..\packages\Topshelf.3.1.0\lib\net40-full\Topshelf.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Messages\AuthorizeCustomer.cs" />
+    <Compile Include="Messages\CreateCustomer.cs" />
+    <Compile Include="Messages\CustomerCreated.cs" />
     <Compile Include="Messages\ParseCvMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

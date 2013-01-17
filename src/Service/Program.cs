@@ -2,21 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Domain.Messages;
 using MassTransit;
+using MassTransit.Saga;
 using Topshelf;
+
 
 namespace Service
 {
     public class Program
     {
 
-        public static void Main(string[] args)// The endpoint's must be different
+        public static void Main(string[] args)
         {
             Bus.Initialize(sbc =>
             {
                 sbc.UseRabbitMq();
                 sbc.UseRabbitMqRouting();
-                sbc.ReceiveFrom("rabbitmq://localhost/sample.service");// The endpoint's must be different
+				// this should be different from other endpoints in the project
+                sbc.ReceiveFrom("rabbitmq://localhost/elevate.service");
+                sbc.Subscribe(s => s.Saga(new InMemorySagaRepository<CustomerSaga>())
+                                    .Permanent());
             });
 
             var cfg = HostFactory.New(c => {
@@ -33,7 +39,6 @@ namespace Service
                     a.WhenStarted(o => o.Start());
                     a.WhenStopped(o => o.Stop());
                 });
-
             });
 
             try
