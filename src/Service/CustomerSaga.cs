@@ -24,7 +24,7 @@ namespace Service
 
 		public CustomerSaga(Guid guid)
 		{
-			CorrelationId = guid;
+			CorrelationId = Guid.NewGuid();
 		}
 
         static CustomerSaga()
@@ -39,7 +39,7 @@ namespace Service
                         saga.Email = message.Email;
                         saga.Password = message.Password;
 				
-                    }).Publish((saga, message) => new CustomerCreated{Email = saga.Email})
+                    }).Publish((saga, message) => new CustomerCreated{Email = saga.Email, CustomerId = saga.CorrelationId})
                     .TransitionTo(Created));
                 During(Created,
                     When(Authorize)
