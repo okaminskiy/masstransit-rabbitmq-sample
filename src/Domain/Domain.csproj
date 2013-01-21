@@ -72,6 +72,7 @@
     <Compile Include="Messages\CreateCustomer.cs" />
     <Compile Include="Messages\CustomerCreated.cs" />
     <Compile Include="Messages\ActivateCustomerCommand.cs" />
+    <Compile Include="Messages\CustomerDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

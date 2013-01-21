@@ -6,7 +6,7 @@ using Domain.Messages;
 
 namespace Service
 {
-    public class CustomerSaga : SagaStateMachine<CustomerSaga>, ISaga
+    public class CustomerSaga :  SagaStateMachine<CustomerSaga>, ISaga
     {
         public Guid CorrelationId { get; set; }
         public IServiceBus Bus { get; set; }

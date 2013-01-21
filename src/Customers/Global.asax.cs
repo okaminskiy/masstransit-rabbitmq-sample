@@ -41,18 +41,7 @@ namespace Customers
                     sb.LoadFrom(Container));
                 
 			});
-
-
-		}
-
-        public class AuthorizeCustomerSubscribe: Consumes<CustomerCreated>.All
-        {
-
-            public void Consume(CustomerCreated message)
-            {
-                Bus.Instance.Publish(new AuthorizeCustomer { Email = message.Email, CustomerId = message.CustomerId });
-            }
-        }
+		}  
     }       
 
 }

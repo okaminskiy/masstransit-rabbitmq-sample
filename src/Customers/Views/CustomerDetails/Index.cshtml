@@ -1,0 +1,15 @@
+﻿@model Customers.Models.CustomerDetailsModel
+@{
+    ViewBag.Title = "Index";
+}
+<h2>CustomerDetails</h2>
+@if (Model != null)
+{
+    <h5>Sent</h5>
+}
+@using (Html.BeginForm())
+{
+    @Html.EditorForModel(Model);
+    <button type="submit">Send</button>
+}
+

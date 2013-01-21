@@ -7,7 +7,7 @@ using MassTransit;
 
 namespace Service
 {
-        public class CustomerActivationSubscriber : Consumes<ActivateCustomerCommand>.Context
+        public class CustomerActivationSubscriber : Consumes<ActivateCustomerCommand>.All
         {
            
 
@@ -15,10 +15,11 @@ namespace Service
             {
                 Console.WriteLine(name);
             }
+                
 
-            public void Consume(IConsumeContext<ActivateCustomerCommand> context)
+            public void Consume(ActivateCustomerCommand message)
             {
-                ParseCv(context.Message.S3Key);
+                ParseCv(message.S3Key);
             }
         }
 }

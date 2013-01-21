@@ -21,6 +21,7 @@ namespace Service
         {
             Container = new WindsorContainer();
             Container.Register(AllTypes.FromThisAssembly().BasedOn<IConsumer>());
+            Container.Register(Component.For(typeof(ISagaRepository<>)).ImplementedBy(typeof(InMemorySagaRepository<>)));
             
             Bus.Initialize(sbc =>
                 {
@@ -30,8 +31,8 @@ namespace Service
                     sbc.ReceiveFrom("rabbitmq://localhost/elevate.service");
                     sbc.Subscribe(subs =>
                         {
-                            subs.Saga(new InMemorySagaRepository<CustomerSaga>()).Permanent();
                             subs.LoadFrom(Container);
+                            subs.Saga<CustomerSaga>(Container);
                         });
                 });
 
