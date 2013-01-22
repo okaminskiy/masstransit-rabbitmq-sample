@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,7 +22,7 @@ namespace Customers.Controllers
         [HttpPost]
         public ActionResult Index(CustomerDetailsModel model)
         {
-            Bus.Instance.Publish<CustomerDetails>( new CustomerDetails
+            Bus.Instance.Publish( new CustomerDetails
             {
                 Age = model.Age,
                 EmailAddress = model.EmailAddress,

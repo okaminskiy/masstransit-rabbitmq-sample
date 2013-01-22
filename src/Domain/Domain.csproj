@@ -55,6 +55,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\MassTransit.CastleWindsor.2.7.0\lib\net40\MassTransit.WindsorIntegration.dll</HintPath>
     </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\..\packages\mongocsharpdriver.1.7\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\..\packages\mongocsharpdriver.1.7\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
     <Reference Include="RabbitMQ.Client, Version=3.0.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\RabbitMQ.Client.3.0.0\lib\net30\RabbitMQ.Client.dll</HintPath>
@@ -73,6 +79,9 @@
     <Compile Include="Messages\CustomerCreated.cs" />
     <Compile Include="Messages\ActivateCustomerCommand.cs" />
     <Compile Include="Messages\CustomerDetails.cs" />
+    <Compile Include="MongoDb\CustomerDetailsRepository.cs" />
+    <Compile Include="MongoDb\ICustomerDetailsRepository.cs" />
+    <Compile Include="MongoDb\MongoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

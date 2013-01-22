@@ -34,9 +34,8 @@ namespace Customers
 			Bus.Initialize(sbc =>
 			{
 				sbc.UseRabbitMq();
-				sbc.UseRabbitMqRouting();
 				// this should be different from other endpoints in the project
-				sbc.ReceiveFrom("rabbitmq://localhost/sample.web");
+				sbc.ReceiveFrom("rabbitmq://localhost/customer.web");
                 sbc.Subscribe(sb => 
                     sb.LoadFrom(Container));
                 

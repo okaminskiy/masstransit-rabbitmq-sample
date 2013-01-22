@@ -7,6 +7,7 @@ namespace Domain.Messages
 {
     public class CustomerDetails
     {
+        public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }

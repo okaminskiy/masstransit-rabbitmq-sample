@@ -5,11 +5,35 @@
 <h2>CustomerDetails</h2>
 @if (Model != null)
 {
-    <h5>Sent</h5>
+    <h5 id="result">Sent</h5>
 }
 @using (Html.BeginForm())
 {
-    @Html.EditorForModel(Model);
-    <button type="submit">Send</button>
+     <div>
+        @Html.LabelFor(m => m.FirstName)
+        @Html.TextBoxFor(m => m.FirstName)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.LastName)
+        @Html.TextBoxFor(m => m.LastName)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.EmailAddress)
+        @Html.TextBoxFor(m => m.EmailAddress)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Age)
+        @Html.TextBoxFor(m => m.Age)
+    </div>
+    
+    <div>
+        @Html.LabelFor(m => m.Location)
+        @Html.TextBoxFor(m => m.Location)
+    </div>
+    
+    <button id="Submit" type="submit">Send</button>
 }
 

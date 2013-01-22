@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Domain.Messages;
+using Domain.MongoDb;
 using MassTransit;
 
 namespace Customers.Subscribers
@@ -11,7 +12,7 @@ namespace Customers.Subscribers
     {
         public void Consume(CustomerDetails message)
         {
-            throw new NotImplementedException();
+            new CustomerDetailsRepository().AddCustomerDetails(message);
         }
     }
 }
