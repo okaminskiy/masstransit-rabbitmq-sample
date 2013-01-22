@@ -11,7 +11,7 @@ namespace Domain.MongoDb
     public abstract class MongoRepository <TDocument> : IRepository<TDocument> where TDocument: Document
     {
         private static MongoDatabase _database;
-        private static MongoCollection<TDocument> _collection;
+        protected static MongoCollection<TDocument> _collection;
 	    
         private static string connectionString = ConfigurationManager.ConnectionStrings["Mongo"].ConnectionString;
         

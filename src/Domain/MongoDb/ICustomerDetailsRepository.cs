@@ -13,5 +13,7 @@ namespace Domain.MongoDb
         void Add(CustomerDetails customer);
 
         void Drop();
+
+        List<CustomerDetails> GetAll();
     }
 }

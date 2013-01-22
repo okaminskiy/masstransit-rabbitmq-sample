@@ -6,9 +6,11 @@ using Domain.Documents;
 
 namespace Domain.MongoDb
 {
-    public  class TestCustomerDetailsRepository: TestRepository<CustomerDetails>, IRepository<CustomerDetails>
+    public  class TestCustomerDetailsRepository: TestRepository<CustomerDetails>, ICustomerDetailsRepository
     {
-        static private List<CustomerDetails> _details = new List<CustomerDetails>()
+          static TestCustomerDetailsRepository()
+          {
+              Documents = new List<CustomerDetails>()
                 {
                     new CustomerDetails
                         {
@@ -38,7 +40,12 @@ namespace Domain.MongoDb
                             Location = "location"
                         }
                 };
+          }
 
-        private TestCustomerDetailsRepository():base(_details){}
+        public List<CustomerDetails> GetAll()
+        {
+            Documents = new List<CustomerDetails>();
+            return Documents;
+        }
     }
 }

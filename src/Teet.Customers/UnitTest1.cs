@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
-using Domain.Messages;
+using Domain.Documents;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain.MongoDb;
 using OpenQA.Selenium;
@@ -30,7 +30,7 @@ namespace Teet.Customers
         }
 
         [TestMethod]
-        public void TestIndex()
+        public void TestCustomerDetails()
         {
             var driver = new PhantomJSDriver();
             driver.Navigate().GoToUrl("http://localhost:21634/customerdetails");
@@ -51,10 +51,14 @@ namespace Teet.Customers
 
             System.Threading.Thread.Sleep(10000); 
             
-            CustomerDetails customer = repository.GetCustomerDetails();
+            CustomerDetails customer = repository.GetAll().First();
             foreach (var property in customer.GetType().GetProperties())
             {
                 if (property.Name == "Id") { continue; }
+                if (property.Name == "Age") {
+                    Assert.IsTrue(((int)property.GetValue(customer, null)) == 0); 
+                    continue; 
+                }
                 Assert.IsTrue(((string) property.GetValue(customer, null)) == property.Name);
             }
 

@@ -11,5 +11,10 @@ namespace Domain.MongoDb
     {
         public CustomerDetailsRepository():base("Details")
         {}
+
+        public List<CustomerDetails> GetAll()
+        {
+            return _collection.FindAll().ToList();
+        }
     }
 }
