@@ -6,12 +6,10 @@ using Domain.Documents;
 
 namespace Domain.MongoDb
 {
-    public interface ICustomerDetailsRepository: IRepository<CustomerDetails>
+    public interface IRepository<TDocument> where TDocument: Document
     {
-        CustomerDetails Get(Guid id);
-
-        void Add(CustomerDetails customer);
-
+        TDocument Get(Guid id);
+        void Add(TDocument document);
         void Drop();
     }
 }

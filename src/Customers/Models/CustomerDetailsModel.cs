@@ -10,7 +10,7 @@ namespace Customers.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
-        public string Age { get; set; }
+        public int Age { get; set; }
         public string Location { get; set; }
     }
 }

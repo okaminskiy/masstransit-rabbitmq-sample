@@ -66,6 +66,7 @@
       <HintPath>..\..\packages\RabbitMQ.Client.3.0.0\lib\net30\RabbitMQ.Client.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml.Linq" />
@@ -74,14 +75,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Documents\Document.cs" />
     <Compile Include="Messages\AuthorizeCustomer.cs" />
     <Compile Include="Messages\CreateCustomer.cs" />
     <Compile Include="Messages\CustomerCreated.cs" />
     <Compile Include="Messages\ActivateCustomerCommand.cs" />
+    <Compile Include="Documents\CustomerDetails.cs" />
     <Compile Include="Messages\CustomerDetails.cs" />
     <Compile Include="MongoDb\CustomerDetailsRepository.cs" />
     <Compile Include="MongoDb\ICustomerDetailsRepository.cs" />
+    <Compile Include="MongoDb\IRepository.cs" />
     <Compile Include="MongoDb\MongoRepository.cs" />
+    <Compile Include="MongoDb\TestCustomerDetailsRepository.cs" />
+    <Compile Include="MongoDb\TestRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
