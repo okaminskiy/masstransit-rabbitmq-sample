@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Configuration;
 using Domain.Documents;
-using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 
-namespace Domain.MongoDb
+namespace Domain.Repositories
 {
     public abstract class MongoRepository <TDocument> : IRepository<TDocument> where TDocument: Document
     {
@@ -44,5 +43,7 @@ namespace Domain.MongoDb
         {
             _database.GetCollection<CustomerDetails>("Details").Drop();
         }
+
+        public abstract List<TDocument> GetAll();
     }
 }

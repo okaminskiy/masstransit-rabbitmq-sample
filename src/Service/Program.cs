@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Castle.MicroKernel.Registration;
+﻿using Castle.MicroKernel.Registration;
 using Castle.Windsor;
-using Domain.Messages;
 using MassTransit;
 using MassTransit.Saga;
-using Topshelf;
 
 
 namespace Service
@@ -16,7 +10,7 @@ namespace Service
     {
        
         public static WindsorContainer Container;
-
+        //Never It's Example how to use MassTransit Windsor 
         public static void Main(string[] args)
         {
             Container = new WindsorContainer();
@@ -36,7 +30,8 @@ namespace Service
                         });
                 });
 
-            var cfg = HostFactory.New(c => {
+            #region Service Configuration
+            /*var cfg = HostFactory.New(c => {
 
                 c.SetServiceName("ElevateServices");
                 c.SetDisplayName("ElevateServices");
@@ -56,7 +51,8 @@ namespace Service
             {
                 Console.WriteLine(e.Message);
                 throw;
-            }
+            }*/
+            #endregion
         }
     }
 }

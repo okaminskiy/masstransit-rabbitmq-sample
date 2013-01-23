@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Domain.Documents;
 
-namespace Domain.MongoDb
+namespace Domain.Repositories
 {
     public abstract class TestRepository<TDocument>:IRepository<TDocument> where TDocument: Document
     {
@@ -32,5 +32,7 @@ namespace Domain.MongoDb
         {
             Documents.Clear();
         }
+
+        public abstract List<TDocument> GetAll();
     }
 }

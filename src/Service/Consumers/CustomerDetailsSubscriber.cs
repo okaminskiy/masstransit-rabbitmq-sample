@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Domain.Messages;
+using Domain.Repositories;
 using DD = Domain.Documents;
-using Domain.MongoDb;
 using MassTransit;
 
 namespace Customers.Subscribers

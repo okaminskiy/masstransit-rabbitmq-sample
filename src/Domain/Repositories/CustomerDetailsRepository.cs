@@ -5,14 +5,14 @@ using System.Text;
 using Domain.Documents;
 using MongoDB.Driver;
 
-namespace Domain.MongoDb
+namespace Domain.Repositories
 {
     public class CustomerDetailsRepository: MongoRepository<CustomerDetails>, ICustomerDetailsRepository
     {
         public CustomerDetailsRepository():base("Details")
         {}
 
-        public List<CustomerDetails> GetAll()
+        public override List<CustomerDetails> GetAll()
         {
             return _collection.FindAll().ToList();
         }

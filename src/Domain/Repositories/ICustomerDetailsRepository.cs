@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Domain.Documents;
 
-namespace Domain.MongoDb
+namespace Domain.Repositories
 {
     public interface ICustomerDetailsRepository: IRepository<CustomerDetails>
     {

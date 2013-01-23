@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Domain.Documents;
 
-namespace Domain.MongoDb
+namespace Domain.Repositories
 {
     public  class TestCustomerDetailsRepository: TestRepository<CustomerDetails>, ICustomerDetailsRepository
     {
@@ -42,7 +42,7 @@ namespace Domain.MongoDb
                 };
           }
 
-        public List<CustomerDetails> GetAll()
+        public override List<CustomerDetails> GetAll()
         {
             Documents = new List<CustomerDetails>();
             return Documents;

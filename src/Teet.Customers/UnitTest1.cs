@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using Castle.MicroKernel.Registration;
+using Castle.Windsor;
 using Domain.Documents;
+using Domain.Repositories;
+using Domain.WindsorInstallers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Domain.MongoDb;
 using OpenQA.Selenium;
 using OpenQA.Selenium.PhantomJS;
 
@@ -13,20 +16,24 @@ namespace Teet.Customers
     public class UnitTest1
     {
         static Process _serviceProcess;
-        private ICustomerDetailsRepository repository;
-
+        public ICustomerDetailsRepository Repository;
+        
+        public static IWindsorContainer Container;
+        
         [AssemblyInitialize]
         public static void AssemblyInitialize(TestContext context)
         {
-            _serviceProcess = Process.GetProcesses().FirstOrDefault(p => p.ProcessName.ToLower() == "service")
-                ?? Process.Start(@"..\..\..\..\output\service\Service.exe");
+            /*container.Register(Component.For<IRepository<CustomerDetails>>().LifeStyle.Transient
+                                                     .ImplementedBy<TestCustomerDetailsRepository>());*/
         }
 
         [TestInitialize]
         public void Init()
         {
-            repository = new CustomerDetailsRepository();
-            repository.Drop();
+            Container = new WindsorContainer();  
+            Container.Install(new RealRepositoriesInstaller());
+            Repository = Container.Resolve<ICustomerDetailsRepository>();
+            Repository.Drop();
         }
 
         [TestMethod]
@@ -51,7 +58,7 @@ namespace Teet.Customers
 
             System.Threading.Thread.Sleep(10000); 
             
-            CustomerDetails customer = repository.GetAll().First();
+            CustomerDetails customer = Repository.GetAll().First();
             foreach (var property in customer.GetType().GetProperties())
             {
                 if (property.Name == "Id") { continue; }
