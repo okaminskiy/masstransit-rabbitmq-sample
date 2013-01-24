@@ -1,7 +1,9 @@
-﻿using Castle.MicroKernel.Registration;
+﻿using System;
+using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using MassTransit;
 using MassTransit.Saga;
+using Topshelf;
 
 
 namespace Service
@@ -14,6 +16,7 @@ namespace Service
         public static void Main(string[] args)
         {
             Container = new WindsorContainer();
+            Container.Register(Component.For<Service>());   
             Container.Register(AllTypes.FromThisAssembly().BasedOn<IConsumer>());
             Container.Register(Component.For(typeof(ISagaRepository<>)).ImplementedBy(typeof(InMemorySagaRepository<>)));
             
@@ -30,18 +33,19 @@ namespace Service
                         });
                 });
 
-            #region Service Configuration
-            /*var cfg = HostFactory.New(c => {
+ 
+
+            var cfg = HostFactory.New(c => {
 
                 c.SetServiceName("ElevateServices");
                 c.SetDisplayName("ElevateServices");
                 c.SetDescription("ElevateServices");
                 c.Service<Service>(a =>
                 {
-                    a.ConstructUsing(service => new Service());
+                    a.ConstructUsing(service => Container.Resolve<Service>());
                     a.WhenStarted(o => o.Start());
                     a.WhenStopped(o => o.Stop());
-                });
+                }); 
             });
             try
             {
@@ -51,8 +55,7 @@ namespace Service
             {
                 Console.WriteLine(e.Message);
                 throw;
-            }*/
-            #endregion
+            }
         }
     }
 }
