@@ -1,8 +1,10 @@
 ﻿using System;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
+using Domain.RepositoryInstallers;
 using MassTransit;
 using MassTransit.Saga;
+using Service.Consumers;
 using Topshelf;
 
 
@@ -16,24 +18,11 @@ namespace Service
         public static void Main(string[] args)
         {
             Container = new WindsorContainer();
-            Container.Register(Component.For<Service>());   
-            Container.Register(AllTypes.FromThisAssembly().BasedOn<IConsumer>());
-            Container.Register(Component.For(typeof(ISagaRepository<>)).ImplementedBy(typeof(InMemorySagaRepository<>)));
-            
-            Bus.Initialize(sbc =>
-                {
-                    sbc.UseRabbitMq();
-                    sbc.UseRabbitMqRouting();
-                    // this should be different from other endpoints in the project
-                    sbc.ReceiveFrom("rabbitmq://localhost/elevate.service");
-                    sbc.Subscribe(subs =>
-                        {
-                            subs.LoadFrom(Container);
-                            subs.Saga<CustomerSaga>(Container);
-                        });
-                });
+            Container.Install(new RealRepositoriesInstaller());
+           
+            MassTransitRegister.MTRegister(Container);
 
- 
+            Container.Register(Component.For<Service>());
 
             var cfg = HostFactory.New(c => {
 
@@ -58,4 +47,6 @@ namespace Service
             }
         }
     }
+
+   
 }

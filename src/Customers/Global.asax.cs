@@ -35,7 +35,7 @@ namespace Customers
 			{
 				sbc.UseRabbitMq();
 				// this should be different from other endpoints in the project
-				sbc.ReceiveFrom("rabbitmq://localhost/customer.web");
+				sbc.ReceiveFrom("rabbitmq://localhost/sample.web.customer");
                 sbc.Subscribe(sb => 
                     sb.LoadFrom(Container));
                 

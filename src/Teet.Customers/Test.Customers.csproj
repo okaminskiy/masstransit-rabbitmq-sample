@@ -45,8 +45,29 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\output\service\Castle.Windsor.dll</HintPath>
     </Reference>
+    <Reference Include="Magnum, Version=2.1.0.0, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Magnum.2.1.0\lib\NET40\Magnum.dll</HintPath>
+    </Reference>
+    <Reference Include="MassTransit, Version=2.7.0.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\MassTransit.2.7.1\lib\net40\MassTransit.dll</HintPath>
+    </Reference>
+    <Reference Include="MassTransit.Transports.MSMQ">
+      <HintPath>..\..\packages\MassTransit.2.7.1\lib\net40\MassTransit.Transports.MSMQ.dll</HintPath>
+    </Reference>
+    <Reference Include="MassTransit.Transports.RabbitMq, Version=2.7.0.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\MassTransit.RabbitMQ.2.7.1\lib\net40\MassTransit.Transports.RabbitMq.dll</HintPath>
+    </Reference>
+    <Reference Include="RabbitMQ.Client">
+      <HintPath>..\..\packages\RabbitMQ.Client.3.0.0\lib\net30\RabbitMQ.Client.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
+    <Reference Include="Topshelf">
+      <HintPath>..\..\packages\TopShelf.3.1.0\lib\net40-full\Topshelf.dll</HintPath>
+    </Reference>
     <Reference Include="WebDriver">
       <HintPath>..\..\packages\Selenium.WebDriver.2.29.1\lib\net40\WebDriver.dll</HintPath>
     </Reference>
@@ -83,11 +104,6 @@
       <Project>{70b628cc-dca7-4965-a23c-b92d68507c9a}</Project>
       <Name>Service</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="phantomjs.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

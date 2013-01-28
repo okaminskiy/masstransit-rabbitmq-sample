@@ -5,7 +5,8 @@ using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Domain.Documents;
 using Domain.Repositories;
-using Domain.WindsorInstallers;
+using Domain.RepositoryInstallers;
+using MassTransit;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.PhantomJS;
@@ -23,14 +24,14 @@ namespace Teet.Customers
         [AssemblyInitialize]
         public static void AssemblyInitialize(TestContext context)
         {
-            /*container.Register(Component.For<IRepository<CustomerDetails>>().LifeStyle.Transient
-                                                     .ImplementedBy<TestCustomerDetailsRepository>());*/
+            var a = AppDomain.CurrentDomain;
+            _serviceProcess = Process.Start("..\\..\\..\\..\\output\\service\\service.exe");
         }
 
         [TestInitialize]
         public void Init()
         {
-            Container = new WindsorContainer();  
+            Container = new WindsorContainer();
             Container.Install(new RealRepositoriesInstaller());
             Repository = Container.Resolve<ICustomerDetailsRepository>();
             Repository.Drop();
@@ -41,8 +42,8 @@ namespace Teet.Customers
         {
             var driver = new PhantomJSDriver();
             driver.Navigate().GoToUrl("http://localhost:21634/customerdetails");
+            
             Type type = new CustomerDetails().GetType();
-
             IWebElement element;
             foreach (var property in type.GetProperties())
             {
@@ -56,7 +57,7 @@ namespace Teet.Customers
             element = driver.FindElementById("result");
             Assert.IsTrue(element.Text == "Sent");
 
-            System.Threading.Thread.Sleep(10000); 
+            System.Threading.Thread.Sleep(5000); 
             
             CustomerDetails customer = Repository.GetAll().First();
             foreach (var property in customer.GetType().GetProperties())

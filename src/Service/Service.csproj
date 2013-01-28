@@ -63,21 +63,21 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Magnum.2.1.0\lib\NET40\Magnum.dll</HintPath>
     </Reference>
-    <Reference Include="MassTransit, Version=2.7.2.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
+    <Reference Include="MassTransit, Version=2.7.0.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\MassTransit.2.7.0\lib\net40\MassTransit.dll</HintPath>
+      <HintPath>..\..\packages\MassTransit.2.7.1\lib\net40\MassTransit.dll</HintPath>
     </Reference>
-    <Reference Include="MassTransit.Transports.MSMQ, Version=2.7.2.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
+    <Reference Include="MassTransit.Transports.MSMQ, Version=2.7.0.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\MassTransit.2.7.0\lib\net40\MassTransit.Transports.MSMQ.dll</HintPath>
+      <HintPath>..\..\packages\MassTransit.2.7.1\lib\net40\MassTransit.Transports.MSMQ.dll</HintPath>
     </Reference>
-    <Reference Include="MassTransit.Transports.RabbitMq, Version=2.7.2.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
+    <Reference Include="MassTransit.Transports.RabbitMq, Version=2.7.0.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\MassTransit.RabbitMQ.2.7.0\lib\net40\MassTransit.Transports.RabbitMq.dll</HintPath>
+      <HintPath>..\..\packages\MassTransit.RabbitMQ.2.7.1\lib\net40\MassTransit.Transports.RabbitMq.dll</HintPath>
     </Reference>
-    <Reference Include="MassTransit.WindsorIntegration, Version=2.7.2.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
+    <Reference Include="MassTransit.WindsorIntegration, Version=2.7.0.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\MassTransit.CastleWindsor.2.7.0\lib\net40\MassTransit.WindsorIntegration.dll</HintPath>
+      <HintPath>..\..\packages\MassTransit.CastleWindsor.2.7.1\lib\net40\MassTransit.WindsorIntegration.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB.Bson">
       <HintPath>..\..\packages\mongocsharpdriver.1.7\lib\net35\MongoDB.Bson.dll</HintPath>
@@ -104,12 +104,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Consumers\CustomerDetailsSubscriber.cs" />
-    <Compile Include="Sagas\CustomerSaga.cs" />
     <Compile Include="Consumers\CustomerActivationSubscriber.cs" />
+    <Compile Include="Consumers\CustomerDetailSubscriber.cs" />
+    <Compile Include="MassTransitRegister.cs" />
+    <Compile Include="Sagas\CustomerSaga.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceInstallers\RealServiceInstaller.cs" />
     <Compile Include="Service.cs" />
+    <Compile Include="ServiceInstallers\TestServiceInstaller.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

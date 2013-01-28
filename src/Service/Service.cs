@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Service
 {
-    class Service
+    public class Service
     {
         public void Start()
         {
