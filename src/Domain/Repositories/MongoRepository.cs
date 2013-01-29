@@ -47,7 +47,7 @@ namespace Domain.Repositories
         
         public void Delete(TDocument document)
         {
-            var query = Query.EQ("Id", document.Id);
+            var query = Query.EQ("_id", document.Id);
             _collection.Remove(query);
         }
     }

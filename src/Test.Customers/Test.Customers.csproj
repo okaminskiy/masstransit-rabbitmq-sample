@@ -100,9 +100,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CustomerDetails.feature</DependentUpon>
     </Compile>
+    <Compile Include="PageModels\BasePage.cs" />
     <Compile Include="PageModels\CustomerDetailsPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\CustomerDetailsSteps.cs" />
+    <Compile Include="Steps\StepsBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

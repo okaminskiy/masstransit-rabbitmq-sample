@@ -3,58 +3,48 @@ using OpenQA.Selenium.PhantomJS;
 
 namespace Test.Customers.PageModels
 {
-    public class CustomerDetailsPage
+    public class CustomerDetailsPage: BasePage
     {
-        private readonly IWebDriver _driver;
+        private const string Url = "http://localhost:21634/customerdetails";
 
-        private readonly string _url = "http://localhost:21634/customerdetails"; 
-
-        public CustomerDetailsPage ()
-        {
-            _driver = new PhantomJSDriver();
-            _driver.Navigate().GoToUrl("http://localhost:21634/customerdetails");
-        }
-
-        public void UseDriver(IWebDriver driver)
-        {
-           IWebDriver _driver;
-        }
+        public CustomerDetailsPage(IWebDriver driver) : base(driver, Url)
+        {}
 
         public string FirstName
         {
-            set { _driver.FindElement(By.Id("FirstName")).SendKeys(value); }
-            get { return _driver.FindElement(By.Id("FirstName")).GetAttribute("value"); }
+            set { Driver.FindElement(By.Id("FirstName")).SendKeys(value); }
+            get { return Driver.FindElement(By.Id("FirstName")).GetAttribute("value"); }
         }
 
         public string LastName
         {
-            set { _driver.FindElement(By.Id("LastName")).SendKeys(value); }
-            get { return _driver.FindElement(By.Id("LastName")).GetAttribute("value"); }
+            set { Driver.FindElement(By.Id("LastName")).SendKeys(value); }
+            get { return Driver.FindElement(By.Id("LastName")).GetAttribute("value"); }
         }
 
         public string EmailAddress
         {
-            set { _driver.FindElement(By.Id("EmailAddress")).SendKeys(value); }
+            set { Driver.FindElement(By.Id("EmailAddress")).SendKeys(value); }
         }
 
         public string Age
         {
-            set { _driver.FindElement(By.Id("Age")).SendKeys(value); }
+            set { Driver.FindElement(By.Id("Age")).SendKeys(value); }
         }
 
         public string Location
         {
-            set { _driver.FindElement(By.Id("Location")).SendKeys(value); }
+            set { Driver.FindElement(By.Id("Location")).SendKeys(value); }
         }
 
         public string ResultMessage
         {
-            get { return _driver.FindElement(By.Id("result")).Text; }
+            get { return Driver.FindElement(By.Id("result")).Text; }
         }
 
         public void Submit()
         {
-            _driver.FindElement(By.Id("Submit")).Submit();
+            Driver.FindElement(By.Id("Submit")).Submit();
         }
     }
 }

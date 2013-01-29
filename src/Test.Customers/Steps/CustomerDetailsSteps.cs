@@ -1,10 +1,13 @@
 ﻿
 using System.Diagnostics;
 using System.Linq;
+using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Domain.Documents;
 using Domain.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
+using OpenQA.Selenium.PhantomJS;
 using TechTalk.SpecFlow;
 using Domain.RepositoryInstallers;
 using Test.Customers.PageModels;
@@ -12,24 +15,20 @@ using Test.Customers.PageModels;
 namespace Test.Customers.Steps
 {
     [Binding]
-    public class CustomerDetailsSteps
+    public class CustomerDetailsSteps: StepsBase
     {
-        private CustomerDetailsPage _page;
-        private IWindsorContainer _container ;
-        private Process _serviceProcess;
 
+        private CustomerDetailsPage _page;
         [Given(@"I open the details page")]
         public void OpenPage()
         {
-            _serviceProcess = Process.Start("..\\..\\..\\..\\output\\service\\service.exe");
-            _container = new WindsorContainer();
-            _container.Install(new RealRepositoriesInstaller());
-            _page = new CustomerDetailsPage();
+            Container.Install(new RealRepositoriesInstaller());
         }
 
         [When(@"I input")]
         public void Input(Table table)
         {
+            _page = Container.Resolve<CustomerDetailsPage>();
             _page.Age = table.Rows[0]["Age"];
             _page.FirstName = table.Rows[0]["FirstName"];
             _page.LastName = table.Rows[0]["LastName"];
@@ -51,18 +50,11 @@ namespace Test.Customers.Steps
         [Then(@"my details added to DataBase")]
         public void CheckResultInDb()
         {
-            ICustomerDetailsRepository rep = _container.Resolve<ICustomerDetailsRepository>();
+            ICustomerDetailsRepository rep = Container.Resolve<ICustomerDetailsRepository>();
             CustomerDetails cd =
                 rep.GetAll().FirstOrDefault(d => d.FirstName == _page.FirstName && d.LastName == _page.LastName);
             Assert.IsNotNull(cd);
             rep.Delete(cd);
-            return;
-        }
-
-        [TestCleanup]
-        public void Cleanup()
-        {
-            _serviceProcess.Close();
         }
     }
 }
