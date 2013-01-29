@@ -7,13 +7,5 @@ using Domain.Documents;
 namespace Domain.Repositories
 {
     public interface ICustomerDetailsRepository: IRepository<CustomerDetails>
-    {
-        CustomerDetails Get(Guid id);
-
-        void Add(CustomerDetails customer);
-
-        void Drop();
-
-        List<CustomerDetails> GetAll();
-    }
+    {}
 }

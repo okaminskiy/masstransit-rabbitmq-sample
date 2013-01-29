@@ -6,6 +6,7 @@ using Domain.Messages;
 
 namespace Service
 {
+    //TODO: oleg - add SagaInstaller
     public class CustomerSaga :  SagaStateMachine<CustomerSaga>, ISaga
     {
         public Guid CorrelationId { get; set; }

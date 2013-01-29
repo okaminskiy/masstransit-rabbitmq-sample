@@ -7,6 +7,7 @@ namespace Service.ServiceInstallers
 {
     class TestServiceInstaller:IWindsorInstaller
     {
+        //TODO: oleg - Install service for working with FakeRepository
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Install(new TestRepositoryInstaller());

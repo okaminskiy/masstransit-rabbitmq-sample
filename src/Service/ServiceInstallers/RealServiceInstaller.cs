@@ -8,6 +8,7 @@ using Castle.Windsor;
 
 namespace Service.ServiceInstallers
 {
+    //TODO: oleg - Install service for working with MongoRepository
     class RealServiceInstaller:IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)

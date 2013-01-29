@@ -34,5 +34,10 @@ namespace Domain.Repositories
         }
 
         public abstract List<TDocument> GetAll();
+
+        public void Delete(TDocument document)
+        {
+            Documents.Remove(Documents.First(d => d.Id == document.Id));
+        }
     }
 }

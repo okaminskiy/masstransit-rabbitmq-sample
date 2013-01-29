@@ -34,3 +34,6 @@ package.log
 timeStamp.dat
 .idea/workspace.xml
 .idea/tasks.xml
+*.user
+
+*.gif

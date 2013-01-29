@@ -4,6 +4,7 @@ using System.Linq;
 using System.Configuration;
 using Domain.Documents;
 using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 
 namespace Domain.Repositories
 {
@@ -11,7 +12,6 @@ namespace Domain.Repositories
     {
         private static MongoDatabase _database;
         protected static MongoCollection<TDocument> _collection;
-	    
         private static string connectionString = ConfigurationManager.ConnectionStrings["Mongo"].ConnectionString;
         
         static MongoRepository()
@@ -35,8 +35,7 @@ namespace Domain.Repositories
 
         public void Add(TDocument document)
         {
-            var customersDetails = _database.GetCollection<TDocument>("Details");
-            customersDetails.Insert(document);
+            _collection.Insert(document);
         }
 
         public void Drop()
@@ -45,5 +44,11 @@ namespace Domain.Repositories
         }
 
         public abstract List<TDocument> GetAll();
+        
+        public void Delete(TDocument document)
+        {
+            var query = Query.EQ("Id", document.Id);
+            _collection.Remove(query);
+        }
     }
 }

@@ -21,9 +21,10 @@ namespace Service
             Container.Install(new RealRepositoriesInstaller());
            
             MassTransitRegister.MTRegister(Container);
-
+           
+            //TODO: oleh - ask why?
             Container.Register(Component.For<Service>());
-
+            
             var cfg = HostFactory.New(c => {
 
                 c.SetServiceName("ElevateServices");

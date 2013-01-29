@@ -11,6 +11,7 @@ namespace Service
 {
     public class MassTransitRegister
     {
+        //TODO: oleg - look how to use DI for Bus installation in the elevate Project
         public static void MTRegister(IWindsorContainer container)
         {
             container.Register(AllTypes.FromThisAssembly().BasedOn<IConsumer>().LifestyleTransient());
