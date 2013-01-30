@@ -100,17 +100,28 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CustomerDetails.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Templates.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Templates.feature</DependentUpon>
+    </Compile>
     <Compile Include="PageModels\BasePage.cs" />
     <Compile Include="PageModels\CustomerDetailsPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\CustomerDetailsSteps.cs" />
     <Compile Include="Steps\StepsBase.cs" />
+    <Compile Include="PageModels\TemplatesPage.cs" />
+    <Compile Include="Steps\TemplatesSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Features\CustomerDetails.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CustomerDetails.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Templates.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Templates.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

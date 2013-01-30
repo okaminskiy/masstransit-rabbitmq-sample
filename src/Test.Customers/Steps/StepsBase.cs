@@ -20,16 +20,12 @@ namespace Test.Customers.Steps
         private static Process _serviceProcess;
 
         [BeforeTestRun]
-        public static void BeforeRun() 
+        public static void BeforeRun()
         {
+            _serviceProcess = Process.Start("Service.exe");
             Container = new WindsorContainer();
             Container.Register(Component.For<IWebDriver>().ImplementedBy<PhantomJSDriver>());
             Container.Register(AllTypes.FromThisAssembly().BasedOn<BasePage>());
-        }
-
-        public void RegisterContainer<TPage, TDriver>() where TPage:BasePage where TDriver: IWebDriver
-        {
-            
         }
 
         [AfterTestRun]

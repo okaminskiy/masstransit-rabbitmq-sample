@@ -14,15 +14,15 @@ Here are the participants:
 <button id="next">Next&gt;&gt;</button>
 
 <script type="text/html" id="step1">
-  <input type="text"  name="step1" value="step1"/>
+  <input type="text" id="templateName" name="step1" value="step1"/>
 </script>
 
 <script type="text/html" id="step2">
-    <input type="text"  name="step2" value="step2"/>
+    <input type="text" id="templateName" name="step2" value="step2"/>
 </script>
 
 <script type="text/html" id="step3">
-    <input type="text"  name="step3" value="step3"/>
+    <input type="text" id="templateName" name="step3" value="step3"/>
 </script>
 
 
@@ -43,14 +43,21 @@ Here are the participants:
 
 
     $(document).ready(function() {
-        $('#next').click(function() {
-            stepId++;
-            ko.applyBindings(new StepView());
+
+        $('#next').click(function () {
+            if (stepId != 3) {
+                stepId++;
+                ko.applyBindings(new StepView());
+            }
         });
+        
         $('#back').click(function () {
-            stepId--;
-            ko.applyBindings(new StepView());
+            if (stepId != 1) {
+                stepId--;
+                ko.applyBindings(new StepView());
+            }
         });
+        
     });
 
 </script>

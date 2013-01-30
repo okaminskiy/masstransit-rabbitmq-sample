@@ -23,12 +23,12 @@ namespace Test.Customers.Steps
         public void OpenPage()
         {
             Container.Install(new RealRepositoriesInstaller());
+            _page = Container.Resolve<CustomerDetailsPage>();
         }
 
         [When(@"I input")]
         public void Input(Table table)
         {
-            _page = Container.Resolve<CustomerDetailsPage>();
             _page.Age = table.Rows[0]["Age"];
             _page.FirstName = table.Rows[0]["FirstName"];
             _page.LastName = table.Rows[0]["LastName"];
