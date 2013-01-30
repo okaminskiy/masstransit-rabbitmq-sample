@@ -1,13 +1,8 @@
-﻿using System;
-using System.Web.Http;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
-using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Customers.App_Start;
 using MassTransit;
-using Topshelf;
-using Domain.Messages;
 
 namespace Customers
 {
@@ -29,16 +24,11 @@ namespace Customers
 
 		void ConfigureBus()
 		{
-		    Container = new WindsorContainer();
-            Container.Register(AllTypes.FromThisAssembly().BasedOn<IConsumer>());
 			Bus.Initialize(sbc =>
 			{
 				sbc.UseRabbitMq();
 				// this should be different from other endpoints in the project
 				sbc.ReceiveFrom("rabbitmq://localhost/sample.web.customer");
-                sbc.Subscribe(sb => 
-                    sb.LoadFrom(Container));
-                
 			});
 		}  
     }       

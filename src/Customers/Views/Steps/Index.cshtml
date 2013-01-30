@@ -1,0 +1,58 @@
+﻿@model dynamic
+
+@{}
+<script type="text/javascript" src="~/Scripts/Steps/knockout-2.2.1.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery-1.9.0.min.js"></script>
+<!-- Bundles.Reference("Scripts/steps/");-->
+
+<h2>Steps</h2>
+
+Here are the participants:
+<div data-bind="template: {data:step, name: step} "></div>
+
+<button id="back">&lt;&lt;Back</button>
+<button id="next">Next&gt;&gt;</button>
+
+<script type="text/html" id="step1">
+  <input type="text"  name="step1" value="step1"/>
+</script>
+
+<script type="text/html" id="step2">
+    <input type="text"  name="step2" value="step2"/>
+</script>
+
+<script type="text/html" id="step3">
+    <input type="text"  name="step3" value="step3"/>
+</script>
+
+
+<script type="text/javascript">
+
+    var stepId = 1;
+    
+    function StepView() {
+        this.step = 'step' + stepId;
+    }
+    
+    ko.applyBindings(new StepView());
+
+    function GetStepTemplate() {
+        return this.step;
+    }
+
+
+
+    $(document).ready(function() {
+        $('#next').click(function() {
+            stepId++;
+            ko.applyBindings(new StepView());
+        });
+        $('#back').click(function () {
+            stepId--;
+            ko.applyBindings(new StepView());
+        });
+    });
+
+</script>
+@* ReSharper restore WrongExpressionStatement *@
+ 
