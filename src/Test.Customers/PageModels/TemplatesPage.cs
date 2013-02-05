@@ -18,15 +18,14 @@ namespace Test.Customers.PageModels
 
         public void ClickBack()
         {
-            IWebElement element = Driver.FindElement(By.Id("back"));
-            element.Click();
+            Driver.Navigate().Back();
         }
 
         public string TemplateName { 
             get
             {
                 IWebElement element = Driver.FindElement(By.Id("templateName"));
-                return element.GetAttribute("value");
+                return element.Text;
             }
         }
     }

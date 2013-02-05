@@ -4,13 +4,13 @@ using Test.Customers.PageModels;
 
 namespace Test.Customers.Steps
 {
-    [Binding, Scope(Tag = "templates")]
+    [Binding, Scope(Tag = "templates")]//Binding to the tag
     class TemplatesSteps: StepsBase
     {
         private  TemplatesPage _page;
         //here are using regular expression
 
-        //We can use many attribute in one TestMthedo to bind it to a feature
+        //We can use many attribute in one StepMethod to bind it to a feature
 
         [Given(@"^I am in (\w+)$")]
         public void OpenPage(string templateName)
@@ -22,7 +22,6 @@ namespace Test.Customers.Steps
         [Then(@"^I am in (\w+)$")]
         public void AfterStepDone(string templateName)
         {
-            Assert.AreEqual(templateName, _page.TemplateName);
             Assert.AreEqual(templateName, _page.TemplateName);
         }
 

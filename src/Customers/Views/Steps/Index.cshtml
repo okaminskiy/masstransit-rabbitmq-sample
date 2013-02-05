@@ -3,63 +3,77 @@
 @{}
 <script type="text/javascript" src="~/Scripts/Steps/knockout-2.2.1.js"></script>
 <script type="text/javascript" src="~/Scripts/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="~/Scripts/Steps/jquery.history.js"></script>
 <!-- Bundles.Reference("Scripts/steps/");-->
 
 <h2>Steps</h2>
 
 Here are the participants:
-<div data-bind="template: {data:step, name: step} "></div>
+<div data-bind="template: {data: historyData, name: step} "></div>
 
 <button id="back">&lt;&lt;Back</button>
 <button id="next">Next&gt;&gt;</button>
 
 <script type="text/html" id="step1">
-  <input type="text" id="templateName" name="step1" value="step1"/>
+    <h1 id ="templateName">step1</h1>
+    <input type="text" id="data" name="step1"/>
 </script>
 
 <script type="text/html" id="step2">
-    <input type="text" id="templateName" name="step2" value="step2"/>
+    <h1 id ="templateName">step2</h1>
+    <input type="text" id="data" name="step2"/>
 </script>
 
 <script type="text/html" id="step3">
-    <input type="text" id="templateName" name="step3" value="step3"/>
+    <h1 id ="templateName">step3</h1>
+    <input type="text" id="data" value="step3"/>
 </script>
 
 
 <script type="text/javascript">
+    var baseUrl = window.location.origin + window.location.pathname;
+    var history = window.History;
+    history.init();
 
-    var stepId = 1;
-    
-    function StepView() {
-        this.step = 'step' + stepId;
-    }
-    
-    ko.applyBindings(new StepView());
-
-    function GetStepTemplate() {
-        return this.step;
-    }
-
-
-
-    $(document).ready(function() {
-
-        $('#next').click(function () {
-            if (stepId != 3) {
-                stepId++;
-                ko.applyBindings(new StepView());
+    var stepView = new function() {
+        //initialize 
+        this.stepId = 1;
+        this.step = 'step1';
+        this.historyData = 'bob';
+        this.nextStep = function() {
+            this.stepId = this.getCurrentStepId();
+            this.step = 'step' + this.stepId;
+        };
+        this.getCurrentStepId = function() {
+            var state = history.getState();
+            var match = state.url.match(/step=(\d)/);
+            var step;
+            if (match) {
+                return parseInt(match[1], 10);
+            } else {
+                return 1;
             }
-        });
+        };
         
-        $('#back').click(function () {
-            if (stepId != 1) {
-                stepId--;
-                ko.applyBindings(new StepView());
-            }
+        history.Adapter.bind(window, 'statechange', function() {
+            stepView.nextStep();
+            ko.applyBindings(stepView);
         });
-        
-    });
+
+
+        $(document).ready(function () {
+            ko.applyBindings(stepView);
+            $('#next').click(function () {
+                if (stepView.stepId < 3) {
+                    alert(baseUrl + '?step=' + ++stepView.stepId);
+                    History.pushState("" , "", baseUrl + '?step=' + ++stepView.stepId);
+                    stepView.nextStep();
+                }
+            });
+        });
+
+
+    };
 
 </script>
-@* ReSharper restore WrongExpressionStatement *@
  
