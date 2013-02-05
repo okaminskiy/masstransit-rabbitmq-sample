@@ -1,10 +1,11 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 
 namespace Test.Customers.PageModels
 {
     public class TemplatesPage: BasePage
     {
-        private const string Url = "http://localhost:21634/steps";
+        private const string Url = "http://localhost/Customers/steps";
 
         public TemplatesPage(IWebDriver driver) : base(driver, Url)
         {}
