@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Srvice</id>
+    <title>Service</title>
+    <version>1.0.0</version>
+    <authors>Paul Stovell</authors>
+    <owners>Paul Stovell</owners>
+    <licenseUrl>http://octopusdeploy.com</licenseUrl>
+    <projectUrl>http://octopusdeploy.com</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A sample project that shows how Octopus can work with TeamCity.</description>
+    <releaseNotes>This release contains the following changes...</releaseNotes>
+  </metadata>
+</package>
