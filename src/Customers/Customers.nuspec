@@ -3,7 +3,7 @@
   <metadata>
     <id>Customers</id>
     <title>Customers</title>
-    <version>1.0.0</version>
+    <version>$version$</version>
     <authors>Paul Stovell</authors>
     <owners>Paul Stovell</owners>
     <licenseUrl>http://octopusdeploy.com</licenseUrl>
