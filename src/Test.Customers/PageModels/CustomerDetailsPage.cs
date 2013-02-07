@@ -6,7 +6,7 @@ namespace Test.Customers.PageModels
     public class CustomerDetailsPage: BasePage
     {
         //TODO: oleg - push it to app.config
-        private const string Url = "http://localhost:3333/Customers/customerdetails";
+        private const string Url = "http://localhost:4000/Customers/customerdetails";
 
         public CustomerDetailsPage(IWebDriver driver) : base(driver, Url)
         {}
