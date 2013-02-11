@@ -6,7 +6,8 @@ namespace Test.Customers.PageModels
     public class TemplatesPage: BasePage
     {
         //TODO: oleg - push it to app.config
-        private const string Url = "http://localhost:4000/Customers/steps";
+        //private const string Url = "http://localhost:4000/Customers/steps";
+        private const string Url = "http://localhost:3333/steps";
 
         public TemplatesPage(IWebDriver driver) : base(driver, Url)
         {}
@@ -17,9 +18,9 @@ namespace Test.Customers.PageModels
             element.Click();
         }
 
-        public void ClickBack()
+        public void Back()
         {
-            Driver.Navigate().Back();
+           Driver.Navigate().Back();
         }
 
         public string TemplateName { 

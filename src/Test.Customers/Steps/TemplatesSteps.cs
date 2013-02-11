@@ -32,9 +32,9 @@ namespace Test.Customers.Steps
         }
 
         [When(@"I press back")]
-        public void CheckStep()
+        public void BackInHistory()
         {
-            _page.ClickBack();
+            _page.Back();
         }
     }
 }

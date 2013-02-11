@@ -15,11 +15,5 @@ Scenario: Next step
 	Then I am in step2
 	When I press back
 	Then I am in step1
-	When I press back 
-	Then I am in step1
-
-Scenario: Try Back from start
-	Given I am in step1
-	When I press back
-	Then I am in step1
 	
+	  
