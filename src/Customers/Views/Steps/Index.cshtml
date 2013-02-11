@@ -37,43 +37,43 @@ Here are the participants:
 
     var stepView = new function() {
         //initialize 
-        this.stepId = 1;
         this.step = 'step1';
         this.historyData = 'bob';
-        this.nextStep = function() {
-            this.stepId = this.getCurrentStepId();
+        this.nextStep = function () {
+            this.updateCurrentStepId();
+            this.stepId++;
             this.step = 'step' + this.stepId;
+            history.pushState("", "", baseUrl + '?step=' + this.stepId);
         };
-        this.getCurrentStepId = function() {
+
+        this.updateCurrentStepId = function () {
             var state = history.getState();
             var match = state.url.match(/step=(\d)/);
-            var step;
-            if (match) {
-                return parseInt(match[1], 10);
-            } else {
-                return 1;
-            }
+            this.stepId = match != null ? parseInt(match[1], 10) : null;
         };
-        
-        history.Adapter.bind(window, 'statechange', function() {
-            stepView.nextStep();
-            ko.applyBindings(stepView);
-        });
 
+        this.updateTemplate = function() {
+            this.updateCurrentStepId();
+            this.step = 'step' + this.stepId;
+        };
 
-        $(document).ready(function () {
-            ko.applyBindings(stepView);
-            $('#next').click(function () {
-                if (stepView.stepId < 3) {
-                    alert(baseUrl + '?step=' + ++stepView.stepId);
-                    History.pushState("" , "", baseUrl + '?step=' + ++stepView.stepId);
-                    stepView.nextStep();
-                }
-            });
-        });
-
-
+        this.updateCurrentStepId();
+        if (this.stepId == null) {
+            window.location.href = baseUrl + '?step=1';
+        }
     };
+        
+    history.Adapter.bind(window, 'statechange', function() {
+        stepView.updateTemplate();
+        ko.applyBindings(stepView);
+    });
+    
+    ko.applyBindings(stepView);
+    $('#next').click(function () {
+        if (stepView.stepId < 3) {
+            stepView.nextStep();
+        }
+    });
 
 </script>
  
